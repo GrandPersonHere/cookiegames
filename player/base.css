@@ -1,0 +1,122 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cookieCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+  z-index: -1; 
+}
+  
+header {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  padding: 2vh; 
+  display: flex;
+  justify-content: center;
+}
+  
+.nav-bar {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100%; 
+}
+
+.nav-bar li {
+  margin: 0 1vw; 
+}
+
+.nav-bar li a {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 0; 
+}
+
+.nav-bar li a img {
+  width: 5vw; 
+  height: 5vw; 
+  transition: transform 0.3s;
+}
+
+.nav-bar li a img:hover {
+  transform: scale(1.2);
+}
+
+nav {
+  background-image: url('/Imgs/COOKIES-BG.jpg'); 
+  background-size: cover; 
+  border-radius: 30px;
+  padding: 2vh 2vw; 
+  max-width: 80vw; 
+  height: 10vh; 
+  display: flex; 
+  justify-content: center; 
+  position: absolute; 
+  top: 5vh; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 2; 
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 20vh; 
+}
+
+.iframe-container {
+  width: 60vw;
+  height: 60vh;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.button-container {
+  width: 60vw; 
+  background-color: black; 
+  padding: .5vw; 
+  display: flex;
+  justify-content: right; 
+  border-radius: 1vw; 
+  margin-top: .5vh;
+}
+
+button {
+  width: 3.75vw; 
+  height: 3.75vw; 
+  cursor: pointer;
+  background-color: #ffffff; 
+  color: white; 
+  border: none; 
+  border-radius: .75vw; 
+  transition: background-color 0.3s ease; 
+  justify-content: center; 
+}
+
+#full {
+  width: 3.25vw; 
+  height: 3.25vw; 
+}

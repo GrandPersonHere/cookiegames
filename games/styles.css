@@ -1,0 +1,176 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+#cookieCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+    z-index: -1; /* Ensure the canvas stays in the background */
+}
+
+#searchBar {
+    position: relative;
+    margin-top: 11vw;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.25vw 5vw;
+    font-size: 18px; /* Slightly larger font size */
+    border: 2px solid white;
+    border-radius: 2vw;
+    z-index: 1;
+    color: white; /* Text color */
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: border 0.3s;
+    text-align: center; /* Center the text */
+}
+
+
+nav {
+    background-image: url('/Imgs/COOKIES-BG.jpg'); /* Path to your cookie image */
+    background-size: cover; /* Adjusts the size of the background image */
+    border-radius: 30px;
+    padding: 2vh 2vw; /* Use vh for vertical padding */
+    max-width: 80vw; /* Use max-width for responsiveness */
+    height: 10vh; /* Use vh for height */
+    display: flex; /* Use flex to easily center items */
+    justify-content: center; /* Center nav items */
+    position: absolute; /* Position it absolutely */
+    top: 5vh; /* Use vh for positioning */
+    left: 50%; /* Align to the center */
+    transform: translateX(-50%); /* Center it based on its width */
+    z-index: 2; /* Ensure it’s above the background */
+}
+
+/* Container for boxes */
+.boxes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4vw; /* Adjusts spacing between boxes */
+    max-width: 80vw; /* Ensures the container adjusts based on screen size */
+    margin: 5vh auto; /* Adjusted space below header and centered horizontally */
+    justify-content: center;
+    align-items: flex-start; /* Remove centering here */
+    padding-bottom: 4vh; /* Add bottom padding to allow for extra spacing */
+}
+
+/* Individual box styling */
+.box {
+    position: relative; /* Enable absolute positioning for child elements */
+    width: 9vw; /* Size of the box */
+    height: 9vw; 
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+    border-radius: 2vw; /* Rounded corners for boxes */
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    background-color: transparent; /* No background color */
+}
+
+/* Centered span styling */
+.box span {
+    position: absolute; /* Position it absolutely within the box */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center it */
+    color: white; /* Text color */
+    z-index: 1; /* Ensure it's above the image */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Adjust image size to fit within the box */
+.box img {
+    width: 100%; /* Image adjusts to 100% of the box size */
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+    border-radius: inherit; /* Inherits the box's border-radius */
+}
+
+/* Box hover effect */
+.box:hover {
+    transform: scale(1.1); /* Slight enlargement on hover */
+}
+
+/* Hover effect on the image */
+.box:hover span {
+    opacity: 1; /* Show the span on hover */
+}
+
+/* Overlay background on hover */
+.box:hover::before {
+    content: ""; /* Necessary for pseudo-element */
+    position: absolute; /* Positioning the overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.7); /* 70% opacity gray background */
+    z-index: 0; /* Place behind the span */
+}
+
+/* Target WebKit browsers */
+::-webkit-scrollbar {
+    width: 16px; /* Width of the scrollbar */
+}
+
+/* Track: The background behind the scrollbar */
+::-webkit-scrollbar-track {
+    background: #1e1e1e; /* A solid background (optional) */
+    border-radius: 8px; /* Rounded corners for the track */
+}
+
+/* Handle: The draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+    border-radius: 8px; /* Rounded corners for the scrollbar handle */
+    background: url('/Imgs/cookie.webp') no-repeat center; /* Set your custom image */
+    background-size: contain; /* Ensure the image fits within the scrollbar */
+}
+
+/* Hover effect on the handle */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(128, 128, 128, 0.7); /* Add hover effect (optional) */
+}
+
+/* Corner styling (if there's a corner in the scrollbar) */
+::-webkit-scrollbar-corner {
+    background: #1e1e1e; /* You can style the corner too */
+}
+
+/* Navigation bar list styling */
+.nav-bar {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+    padding: 0;
+    margin: 0;
+    height: 100%; /* Ensure the nav bar takes full height */
+}
+
+.nav-bar li {
+    margin: 0 1vw; /* Use vw for margins */
+}
+
+.nav-bar li a {
+    display: flex; /* Use flex for the anchor tag */
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    padding: 0; /* Remove extra padding to help with centering */
+}
+
+.nav-bar li a img {
+    width: 5vw; /* Use vw for image width */
+    height: 5vw; /* Use vw for image height */
+    transition: transform 0.3s;
+}
+
+.nav-bar li a img:hover {
+    transform: scale(1.2);
+}

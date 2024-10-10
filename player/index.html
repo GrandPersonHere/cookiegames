@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Games</title>
+  <link rel="stylesheet" href="base.css">
+</head>
+<body>
+  <canvas id="cookieCanvas"></canvas>
+  <header>
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="/Index.html"><img src="/Imgs/house.png" alt="Home"></a></li>
+            <li><a href="/games/"><img src="/Imgs/game-controller.png" alt="Games"></a></li>
+            <li><a href="#"><img src="/Imgs/prox.png" alt="proxy"></a></li>
+            <li><a href="#"><img src="/Imgs/setting (1).png" alt="Settings"></a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="iframe-container">
+      <iframe id="game-iframe" src="" allowfullscreen></iframe>
+    </div>
+    <div class="button-container">
+      <button id="fullscreen-btn"><img id="full" src="/imgs/scale-up.png"></button>
+    </div>
+  </main>
+
+  <script>
+    const iframe = document.getElementById('game-iframe');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    // Load the game based on the URL parameter
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const game = params.get('game');
+
+
+      const gameMap = {
+        'survey': 'https://docs.google.com/forms/d/e/1FAIpQLSfsmnanCIAcyc0b9n5kRbfvpovblJBOBXJ_iR5U-tAUQh9_fA/viewform?usp=sharing',
+        '1': '/projects/1/index.html',
+        '1v1space': '/projects/1v1space/index.html',
+        '2048': '/projects/2048/index.html',
+        '9007199254740992': '/projects/9007199254740992/index.html',
+        'achievementunlocked': '/projects/achievementunlocked/index.html',
+        'adrenalinechallenge': '/projects/adrenalinechallenge/index.html',
+        'amoung-us': '/projects/among-us/index.html',
+        'avalanche': '/projects/avalanche/index.html',
+        'backrooms': '/projects/backrooms/index.html',
+        'basketball-stars': '/projects/basketball-stars/index.html',
+        'battleforgondor': '/projects/battleforgondor/index.html',
+        'bigredbutton': '/projects/bigredbutton/index.html',
+        'blackknight': '/projects/blackknight/index.html',
+        'bloonstd': '/projects/bloonstd/index.html',
+        'bloonstd2': '/projects/bloonstd2/index.html',
+        'bloxors': '/projects/bloxors/index.html',
+        'boxhead2play': '/projects/boxhead2play/index.html',
+        'breakingthebank': '/projects/breakingthebank/index.html',
+        'btts': '/projects/btts/index.html',
+        'cannonbball4': '/projects/cannon-basketball-4/index.html',
+        'canyondefense': '/projects/canyondefense/index.html',
+        'cell-machine': '/projects/cell-machine/index.html',
+        'championarcher': '/projects/championarcher/index.html',
+        'chrome-dino': '/projects/chrome-dino/index.html',
+        'circlo': '/projects/circlo/index.html',
+        'connect3': '/projects/connect3/index.html',
+        'cookie-clicker': '/projects/cookie-clicker/index.html',
+        'craftmine': '/projects/craftmine/index.html',
+        'creativekillchamber': '/projects/creativekillchamber/index.html',
+        'csgo-clicker': '/projects/csgo-clicker/index.html',
+        'ctr': '/projects/ctr/index.html',
+        'ctr-hol': '/projects/ctr-holiday/index.html',
+        'ctr-tr': '/projects/ctr-tr/index.html',
+        'cubefield': '/projects/cubefield/index.html',
+        'cupcake2048': '/projects/cupcake2048/index.html',
+        'dond': '/projects/deal-or-no-deal/index.html',
+        'death-run-3d': '/projects/death-run-3d/index.html',
+        'defend-the-tank': '/projects/defend-the-tank/index.html',
+        'doge2048': '/projects/doge2048/index.html',
+        'dogeminer': '/projects/DogeMiner/index.html',
+        'doodlejump': '/projects/doodle-jump/index.html',
+        'doublewires': '/projects/doublewires/index.html',
+        'draw-the-hill': '/projects/draw-the-hill/index.html',
+        'ducklife1': '/projects/ducklife1/index.html',
+        'ducklife2': '/projects/ducklife2/index.html',
+        'ducklife3': '/projects/ducklife3/index.html',
+        'edgenotfound': '/projects/edgenotfound/index.html',
+        'elasticman': '/projects/elasticman/index.html',
+        'endlesswar3': '/projects/endlesswar3/index.html',
+        'evil-glitch': '/projects/evil-glitch/index.html',
+        'exo': '/projects/exo/index.html',
+        'factoryballs': '/projects/factoryballs/index.html',
+        'fake-virus': '/projects/fake-virus/index.html',
+        'flappy-2048': '/projects/flappy-2048/index.html',
+        'flappy-bird': '/projects/flappy-bird/index.html',
+        'flashtetris': '/projects/flashtetris/index.html',
+        'game-inside': '/projects/game-inside/index.html',
+        'geodash': '/projects/geodash/index.html',
+        'getaway-shootout': '/projects/getaway-shootout/index.html',
+        'gimme-the-airpod': '/projects/gimme-the-airpod/index.html',
+        'glass-city': '/projects/glass-city/index.html',
+        'google-snake': '/projects/google-snake/index.html',
+        'grindcraft': '/projects/grindcraft/index.html',
+        'hackertype': '/projects/hackertype/index.html',
+        'hba': '/projects/hba/index.html',
+        'helicopter': '/projects/helicopter/index.html',
+        'hexempire': '/projects/hexempire/index.html',
+        'HexGL': '/projects/HexGL/index.html',
+        'Hextris': '/projects/hextris/index.html',
+        'idlebreakout': '/projects/idle-breakout/index.html',
+        'idle-shark': '/projects/idle-shark/index.html',
+        'impossiblequiz': '/projects/impossiblequiz/index.html',
+        'interactivebuddy': '/projects/interactivebuddy/index.html',
+        'just-one-boss': '/projects/just-one-boss/index.html',
+        'kittencannon': '/projects/kittencannon/index.html',
+        'krunker': '/projects/krunker/index.html',
+        'learntofly': '/projects/learntofly/index.html',
+        'mario': '/projects/mario/index.html',
+        'matrixrampage': '/projects/matrixrampage/index.html',
+        'meme2048': '/projects/meme2048/index.html',
+        'minecraft': '/projects/minecraft/index.html',
+        'minecraft-classic': '/projects/minecraft-classic/index.html',
+        'minesweeper': '/projects/minesweeper/index.html',
+        'miniputt': '/projects/miniputt/index.html',
+        'missiles': '/projects/missiles/index.html',
+        'motox3m': '/projects/motox3m/index.html',
+        'motox3m-pool': '/projects/motox3m-pool/index.html',
+        'motox3m-spooky': '/projects/motox3m-spooky/index.html',
+        'motox3m-winter': '/projects/motox3m-winter/index.html',
+        'n-gon': '/projects/n-gon/index.html',
+        'ns-shaft': '/projects/ns-shaft/index.html',
+        'om-bounce': '/projects/om-bounce/index.html',
+        'pandemic2': '/projects/pandemic2/index.html',
+        'papaspizzaria': '/projects/papaspizzaria/index.html',
+        'paperio2': '/projects/paperio2/index.html',
+        'paper-planes': '/projects/papery-planes/index.html',
+        'partical-clicker': '/projects/particle-clicker/index.html',
+        'polybranch': '/projects/polybranch/index.html',
+        'portalflash': '/projects/portalflash/index.html',
+        'percisioncraft': '/projects/percision-client/index.html',
+        'push-the-square': '/projects/push-the-square/index.html',
+        'push-your-luck': '/projects/push-your-luck/index.html',
+        'retro-bowl': '/projects/retro-bowl/index.html',
+        'rolly-vortex': '/projects/rolly-vortex/index.html',
+        'rooftop-snipers': '/projects/rooftop-snipers/index.html',
+        'sand-game': '/projects/sand-game/index.html',
+        'slope': '/projects/slope/index.html',
+        'sm64': '/projects/sm64/index.html',
+        'smashkarts': '/projects/smashkarts/index.html',
+        'smokingbarrels': '/projects/smoking-barrels/index.html',
+        'snowbattle': '/projects/snowbattle/index.html',
+        'soldier-legend': '/projects/soldier-legend/index.html',
+        'solitaire': '/projects/solitaire/index.html',
+        'sort-the-court': '/projects/sort-the-court/index.html',
+        'soundboard': '/projects/soundboard/index.html',
+        'stack': '/projects/stack/index.html',
+        'stack-bump-3d': '/projects/stack-bump-3d/index.html',
+        'stealingthediamond': '/projects/stealingthediamond/index.html',
+        'stickwar': '/projects/stickwar/index.html',
+        'stormthehouse2': '/projects/stormthehouse2/index.html',
+        'superhot': '/projects/superhot/index.html',
+        'swerve': '/projects/swerve/index.html',
+        'tacticalassasin': '/projects/tacticalassain2/index.html',
+        'tank-trouble02': '/projects/tank-trouble-2/index.html',
+        'tanuki-sunset': '/projects/tanuki-sunset/index.html',
+        'temple-run-2': '/projects/temple-run-2/index.html',
+        'thebattle': '/projects/thebattle/index.html',
+        'the-final-earth': '/projects/the-final-earth/index.html',
+        'theheist': '/projects/theheist/index.html',
+        'there-is-no-game': '/projects/there-is-no-game/index.html',
+        'thisistheonlylevel': '/projects/thisistheonlylevel/index.html',
+        'tosstheturtle': '/projects/tosstheturtle/index.html',
+        'tube-jumpers': '/projects/tube-jumpers/index.html',
+        'tunnel-rush': '/projects/tunnel-rush/index.html',
+        'tv-static': '/projects/tv-static/index.html',
+        'vex3': '/projects/vex3/index.html',
+        'vex4': '/projects/vex4/index.html',
+        'vex5': '/projects/vex5/index.html',
+        'vex6': '/projects/vex6/index.html',
+        'webretro-local': '/projects/webretro-local/index.html',
+        'wolf3d': '/projects/wolf3d/index.html',
+        'wordle': '/projects/wordle/index.html',
+        'worlds-hardest-game': '/projects/worlds-hardest-game/index.html',
+        'worlds-hardest-game-2': '/projects/worlds-hardest-game/index.html',
+        'you-are-bezos': '/projects/you-are-bezos/index.html',
+      };
+
+      // Get the corresponding game file, defaulting to a fallback if not found
+      const gameFile = gameMap[game] || 'defaultGame.html';
+
+      // Set the iframe source to the selected game
+      iframe.src = gameFile;
+    };
+
+    fullscreenBtn.addEventListener('click', () => {
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) { // Firefox
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) { // IE/Edge
+        iframe.msRequestFullscreen();
+      }
+    });
+
+    const canvas = document.getElementById('cookieCanvas');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+// Adjust canvas size on window resize
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+});
+
+// Cookie image
+const cookieImg = new Image();
+cookieImg.src = '/Imgs/cookie.webp'; // Simple cookie-like image (a brown circle)
+
+class Cookie {
+    constructor() {
+        this.reset();
+    }
+
+    reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height;
+        this.size = 20 + Math.random() * 30;
+        this.speed = 1 + Math.random() * 3;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 2;
+    }
+
+    update() {
+        this.y += this.speed;
+        this.rotation += this.rotationSpeed;
+
+        if (this.y > height) {
+            this.reset();
+            this.y = 0;
+        }
+    }
+
+    draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.drawImage(cookieImg, -this.size / 2, -this.size / 2, this.size, this.size);
+        ctx.restore();
+    }
+}
+
+const cookies = [];
+const numCookies = 30;
+
+// Initialize cookies after the image has loaded
+cookieImg.onload = () => {
+    for (let i = 0; i < numCookies; i++) {
+        cookies.push(new Cookie());
+    }
+    animate();
+};
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let cookie of cookies) {
+        cookie.update();
+        cookie.draw(ctx);
+    }
+    requestAnimationFrame(animate);
+}
+
+  </script>
+
+</body>
+</html>

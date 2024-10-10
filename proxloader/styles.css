@@ -1,0 +1,67 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex; /* Use flex for body */
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center horizontally */
+}
+
+#cookieCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Use viewport width */
+    height: 100vh; /* Use viewport height */
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+    z-index: -1; /* Ensure the canvas stays in the background */
+}
+
+nav {
+    background-image: url('/Imgs/COOKIES-BG.jpg'); /* Path to your cookie image */
+    background-size: cover; /* Adjusts the size of the background image */
+    border-radius: 30px;
+    padding: 2vh 2vw; /* Use vh for vertical padding */
+    max-width: 80vw; /* Use max-width for responsiveness */
+    height: 10vh; /* Use vh for height */
+    display: flex; /* Use flex to easily center items */
+    justify-content: center; /* Center nav items */
+    position: absolute; /* Position it absolutely */
+    top: 5vh; /* Use vh for positioning */
+    left: 50%; /* Align to the center */
+    transform: translateX(-50%); /* Center it based on its width */
+    z-index: 2; /* Ensure it’s above the background */
+}
+
+.nav-bar {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+    padding: 0;
+    margin: 0;
+    height: 100%; /* Ensure the nav bar takes full height */
+}
+
+.nav-bar li {
+    margin: 0 1vw; /* Use vw for margins */
+}
+
+.nav-bar li a {
+    display: flex; /* Use flex for the anchor tag */
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    padding: 0; /* Remove extra padding to help with centering */
+}
+
+.nav-bar li a img {
+    width: 5vw; /* Use vw for image width */
+    height: 5vw; /* Use vw for image height */
+    transition: transform 0.3s;
+}
+
+.nav-bar li a img:hover {
+    transform: scale(1.2);
+}
+
